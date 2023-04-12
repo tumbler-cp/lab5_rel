@@ -8,6 +8,7 @@ import logger.Logger;
 
 import java.io.IOError;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;

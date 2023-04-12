@@ -47,6 +47,10 @@ public class UpdateId extends Command {
                 """);
     }
 
+    /**
+     * Second part of execute
+     * @param argLine Command params
+     */
     private void miniExecute(String[] argLine) {
         int id = Integer.parseInt(argLine[0]);
         Dragon dragon;

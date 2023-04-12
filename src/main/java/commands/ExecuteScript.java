@@ -1,6 +1,8 @@
 package commands;
 
+import exceptions.EmptyCollectionException;
 import terminal.Terminal;
+import commands.informational.History;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,6 +24,7 @@ public class ExecuteScript extends Command {
     private final HashSet buffer = new HashSet();
     private int buff = 1;
     public int cycleDepth = 0;
+    CommandManager CM;
     /**
      * Terminal for executing commands
      */
@@ -32,9 +35,10 @@ public class ExecuteScript extends Command {
      *
      * @param terminal - console origin
      */
-    public ExecuteScript(Terminal terminal) {
+    public ExecuteScript(Terminal terminal, CommandManager collectionManager) {
         super("execute_script file_name", "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
         console = terminal;
+        this.CM = collectionManager;
     }
 
     /**
@@ -57,18 +61,45 @@ public class ExecuteScript extends Command {
             Terminal.logger.write(fnf);
             return;
         }
-        String s;
+        try {
+            miniEx(in, lever);
+        } catch (EmptyCollectionException e) {
+            System.out.println("Чё-то с прогой не так.");
+        }
+    }
+
+    /**
+     * Second part of executing
+     *
+     * @param in        Scanner of File
+     * @param specLever That special boolean for stopping program
+     * @throws EmptyCollectionException I don't think this exception will be thrown
+     */
+    private void miniEx(Scanner in, AtomicBoolean specLever) throws EmptyCollectionException {
+        StringBuilder s;
         while (in.hasNextLine()) {
             if (buff > cycleDepth + 1) {
                 buff = 1;
                 return;
             }
-            s = in.nextLine();
-            console.executor(s.split(" "), lever);
+            s = new StringBuilder(in.nextLine());
+            String b = "";
+            while (in.hasNextLine()) {
+                b = in.nextLine();
+                if (CM.get_map().containsKey(b)) break;
+                s.append(" ").append(b);
+            }
+            System.out.println(s);
+            console.executor(s.toString().split(" "), specLever);
         }
     }
 
+    /**
+     * Sets depth of recursive cycle of execute_scripts
+     *
+     * @param cycleDepth depth
+     */
     public void setCycleDepth(int cycleDepth) {
-        this.cycleDepth = (cycleDepth);
+        this.cycleDepth = cycleDepth;
     }
 }

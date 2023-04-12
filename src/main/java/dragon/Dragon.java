@@ -267,18 +267,27 @@ public class Dragon implements Comparable<Dragon> {
         return this.getName().compareTo(o.getName());
     }
 
-    public static Dragon parseDrag(String[] args) throws NoSuchOptionException {
+    /**
+     * Makes dragon from String[]
+     *
+     * @param args   String[] param with necessary data
+     * @param fileIn Set it true if parsing from csv file
+     * @return Dragon
+     * @throws NoSuchOptionException If there are problems with enums of Dragon
+     */
+    public static Dragon parseDrag(String[] args, boolean fileIn) throws NoSuchOptionException {
         //"12","in","1.0 2.0","2023-03-18","12","GREEN","UNDERGROUND","WISE","12"
+        int offset = fileIn ? 0 : 1;
         return new Dragon(null, null, 0, null, null, null, null) {{
-            setId(Integer.parseInt(args[0]));
+            if (fileIn) setId(Integer.parseInt(args[0]));
             setName(args[1]);
             setCoordinates(Coordinates.toCoordinates(args[2]));
-            setCreationDate(args[3]);
-            setAge(Integer.parseInt(args[4]));
-            setColor(Color.toColor(args[5]));
-            setType(DragonType.toDragonType(args[6]));
-            setCharacter(DragonCharacter.parse(args[7]));
-            setCave(new DragonCave(Integer.parseInt(args[8])));
+            if (fileIn) setCreationDate(args[3]);
+            setAge(Integer.parseInt(args[4 - offset]));
+            setColor(Color.toColor(args[5 - offset]));
+            setType(DragonType.toDragonType(args[6 - offset]));
+            setCharacter(DragonCharacter.parse(args[7 - offset]));
+            setCave(new DragonCave(Integer.parseInt(args[8 - offset])));
         }};
     }
 }

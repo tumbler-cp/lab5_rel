@@ -21,7 +21,7 @@ public class Help extends Command {
     /**
      * Default constructor
      *
-     * @param commandManager
+     * @param commandManager Manager where from help gets information about commands
      */
     public Help(CommandManager commandManager) {
         super("help", "вывести справку по доступным командам");

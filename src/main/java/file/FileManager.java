@@ -59,8 +59,8 @@ public class FileManager {
         while ((currentLine = in.readNext()) != null) {
             if (currentLine.length == 0) return;
             try {
-                if (!collection.insert(Dragon.parseDrag(currentLine))) {
-                    System.out.println("Дракон с id " + Dragon.parseDrag(currentLine).getId() + " неправильный.");
+                if (!collection.insert(Dragon.parseDrag(currentLine, true))) {
+                    System.out.println("Дракон с id " + Dragon.parseDrag(currentLine, true).getId() + " неправильный.");
                 }
             } catch (NoSuchOptionException n) {
                 System.out.println("Неправильный формат данных в файле.");

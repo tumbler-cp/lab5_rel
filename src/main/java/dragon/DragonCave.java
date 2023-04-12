@@ -5,7 +5,7 @@ package dragon;
  *
  * @author Abdujalol Khodjaev
  */
-public class DragonCave implements Comparable {
+public class DragonCave implements Comparable<DragonCave> {
     private long numberOfTreasures; //Значение поля должно быть больше 0
 
     /**
@@ -36,6 +36,7 @@ public class DragonCave implements Comparable {
         return String.valueOf(this.numberOfTreasures);
     }
 
+
     /**
      * compareTo override
      *
@@ -43,9 +44,9 @@ public class DragonCave implements Comparable {
      * @return 1 if this cave is bigger and 0 if opposite
      */
     @Override
-    public int compareTo(Object o) {
-        DragonCave obj = (DragonCave) o;
-        if (this.numberOfTreasures > obj.numberOfTreasures) return 1;
+    public int compareTo(DragonCave o) {
+        if (this.numberOfTreasures > o.numberOfTreasures) return 1;
+        else if (this.numberOfTreasures < o.numberOfTreasures) return -1;
         return 0;
     }
 }

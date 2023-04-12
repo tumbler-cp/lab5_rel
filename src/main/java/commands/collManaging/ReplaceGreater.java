@@ -37,13 +37,24 @@ public class ReplaceGreater extends Command {
                 """
                         Syntax: replace_if_greater <int key> <int var> <String arg>\s
                         Vars:
-                                1 - name                           | 1 - GREEN       | 1 - \u001B[33mUNDERGROUND\u001B[0m  | 1 - WISE
-                                2 - Coordinates. <int x>/<int y>   | 2 - RED         | 2 - \u001B[31mFIRE\u001B[0m         | 2 - GOOD
-                                3 - age                            | 3 - BLUE        | 3 - \u001B[32mAIR\u001B[0m          | 3 - CHAOTIC_EVIL
-                                4 - color: column 1                | 4 - YELLOW      |                  |
-                                5 - type: column 2                 | 5 - BROWN       |                  |
-                                6 - character: column 3            |                 |                  |
-                                7 - cave. <int Num. of treasure>   |                 |                  |
+                        1 - name
+                        2 - Coordinates. <int x>/<int y>
+                        3 - age
+                        4 - color:
+                            1)Green
+                            2)Red
+                            3)Blue
+                            4)Yellow
+                            5)Brown
+                        5 - type:
+                            1)Underground
+                            2)Fire
+                            3)Air
+                        6 - character:
+                            1)Wise
+                            2)Good
+                            3)Chaotic_Evil
+                        7 - cave. <int Num. of treasure>
                         """
         );
     }

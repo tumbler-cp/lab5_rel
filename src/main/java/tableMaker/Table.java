@@ -5,6 +5,10 @@ import terminal.Terminal;
 
 import java.util.Map;
 
+
+/**
+ * Table maker for command 'Show'
+ */
 public class Table {
     private final Map<Integer, Dragon> collection;
     private int max_id = 2,
@@ -18,11 +22,19 @@ public class Table {
             max_date = 14,
             max_age = 3;
 
+    /**
+     * Default constructor
+     *
+     * @param map HashMap of collectionManager
+     */
     public Table(Map map) {
         collection = map;
         reg_ints();
     }
 
+    /**
+     * Sets max lengths of every field of all Dragons
+     */
     private void reg_ints() {
         for (int k : collection.keySet()) {
             Dragon d = collection.get(k);
@@ -39,6 +51,11 @@ public class Table {
         }
     }
 
+    /**
+     * Returns collection in table form
+     *
+     * @return Tabled (Not array table) collection
+     */
     public String toString() {
         StringBuilder table = new StringBuilder();
         String spc = " ";

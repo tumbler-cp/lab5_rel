@@ -9,8 +9,6 @@ import terminal.Terminal;
 import java.util.Scanner;
 
 public class Main {
-    public static Logger logger = new Logger();
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         CollectionManager collection = new CollectionManager();
@@ -42,7 +40,7 @@ public class Main {
 
         History history = new History();
         Terminal terminal = new Terminal(command_list, in, history);
-        ExecuteScript ex = new ExecuteScript(terminal);
+        ExecuteScript ex = new ExecuteScript(terminal, command_list);
         ex.setCycleDepth(50);
         command_list.add("history", history);
         command_list.add("execute_script", ex);
