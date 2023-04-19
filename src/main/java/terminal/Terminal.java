@@ -7,8 +7,6 @@ import exceptions.NoSuchOptionException;
 import logger.Logger;
 
 import java.io.IOError;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -70,15 +68,19 @@ public class Terminal {
             }
         } catch (EmptyCollectionException e) {
             System.out.println("Коллекция пуста!");
-        }
-        catch (ArrayIndexOutOfBoundsException a) {
+            logger.write(e);
+            return;
+        } catch (ArrayIndexOutOfBoundsException a) {
             System.out.println("Вы не ввели все аргументы либо ввели лишние пробелы.");
             logger.write(a);
+            return;
         } catch (NoSuchOptionException n) {
             System.out.println("Такой опции нет");
             logger.write(n);
+            return;
         } catch (Exception e) {
             logger.write(e);
+            return;
         }
         System.out.println("Команда '" + command + "' не найдена.");
     }
@@ -101,8 +103,7 @@ public class Terminal {
                 executor(line, lever);
                 logger.write(r);
                 return;
-            }
-            catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
                 lever.set(false);
             }
             System.out.print(Terminal.RESET);

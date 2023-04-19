@@ -255,7 +255,14 @@ public class Dragon implements Comparable<Dragon> {
      */
     @Override
     public String toString() {
-        return this.getName();
+        return Terminal.RED + "id: " + Terminal.RESET + getId() + "\n" +
+                Terminal.RED + "name: " + Terminal.RESET + getName() + "\n" +
+                Terminal.RED + "age: " + Terminal.RESET + getAge() + "\n" +
+                Terminal.RED + "coordinates: " + Terminal.RESET + getCoordinates() + "\n" +
+                Terminal.RED + "color: " + Terminal.RESET + getColor() + "\n" +
+                Terminal.RED + "type: " + Terminal.RESET + getType() + "\n" +
+                Terminal.RED + "character: " + Terminal.RESET + getCharacter() + "\n" +
+                Terminal.RED + "cave: " + Terminal.RESET + getCave() + "\n";
     }
 
     /**

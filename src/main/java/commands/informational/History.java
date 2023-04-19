@@ -41,6 +41,10 @@ public class History extends Command {
      */
     @Override
     public void execute(AtomicBoolean lever) {
-        for (String s : list) System.out.println(s);
+        int i = 1;
+        for (String s : list) {
+            System.out.println(i + " " + s);
+            i++;
+        }
     }
 }
