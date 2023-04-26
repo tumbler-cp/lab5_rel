@@ -28,7 +28,10 @@ public class Logger {
      */
     public void write(Exception e) {
         try {
-            writer.write(Arrays.toString(e.getStackTrace()));
+            for(StackTraceElement el : e.getStackTrace()) {
+                writer.write(el.toString());
+                writer.write("\n");
+            }
             writer.write("\n");
         } catch (IOException ex) {
             System.out.println("Ошибка при записи ошибки в log.txt");
@@ -50,10 +53,13 @@ public class Logger {
      */
     public void write(Error e) {
         try {
-            writer.write(Arrays.toString(e.getStackTrace()));
+            for(StackTraceElement el : e.getStackTrace()) {
+                writer.write(el.toString());
+                writer.write("\n");
+            }
             writer.write("\n");
-        } catch (IOException io) {
-            System.out.println("Проблемы с записью в log.txt");
+        } catch (IOException ex) {
+            System.out.println("Ошибка при записи ошибки в log.txt");
         }
     }
 }
