@@ -52,18 +52,18 @@ public class CollectionManager {
     }
 
     public boolean key_check(int key) {
-        for (int k : this.dragons.keySet()) {
-            if (key == k) {
-                System.out.println("Дракон с ключом " + k + " уже существует");
-                return false;
-            }
+        if (this.dragons.containsKey(key)) {
+            System.out.println("Дракон с ключом " + key + " уже существует");
+            return false;
         }
         return true;
     }
 
     public boolean insertWithKey(int key, Dragon dragon) {
+        if (!key_check(key)) return false;
         if (dragon.check()) {
             this.dragons.put(key, dragon);
+            lastKey = key;
             return true;
         }
         System.out.println("Этот дракон не подходит под условия.");
@@ -111,5 +111,14 @@ public class CollectionManager {
         return Terminal.YELLOW + "Collection type: " + Terminal.RESET + this.dragons.getClass().toString().split("class java.util.")[1] + "\n" +
                 Terminal.YELLOW + "Init. Date: " + Terminal.RESET + this.initDate.toString() + "\n" +
                 Terminal.YELLOW + "Object count: " + Terminal.RESET + this.dragons.size() + "\n";
+    }
+
+    public Integer getObjKey(Dragon d) {
+        for (Integer k : dragons.keySet()) {
+            if (dragons.get(k) == d) {
+                return k;
+            }
+        }
+        return null;
     }
 }

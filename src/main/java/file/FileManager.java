@@ -59,7 +59,7 @@ public class FileManager {
         while ((currentLine = in.readNext()) != null) {
             if (currentLine.length == 0) return;
             try {
-                if (!collection.insert(Dragon.parseDrag(currentLine, true))) {
+                if (!collection.insertWithKey(Integer.parseInt(currentLine[0]), Dragon.parseDrag(currentLine, true))) {
                     System.out.println("Дракон с id " + Dragon.parseDrag(currentLine, true).getId() + " неправильный.");
                 }
             } catch (NoSuchOptionException n) {
@@ -95,6 +95,7 @@ public class FileManager {
             try {
                 for (Dragon d : c.get_collection().values()) {
                     add(new String[]{
+                                    c.getObjKey(d).toString(),
                                     d.getId().toString(),
                                     d.getName(),
                                     d.getCoordinates().toString(),

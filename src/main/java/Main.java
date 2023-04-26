@@ -3,7 +3,6 @@ import commands.*;
 import commands.collManaging.*;
 import commands.informational.*;
 import file.FileManager;
-import logger.Logger;
 import terminal.Terminal;
 
 import java.util.Scanner;
