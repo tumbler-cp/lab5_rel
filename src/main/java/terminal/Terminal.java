@@ -78,6 +78,10 @@ public class Terminal {
             System.out.println("Такой опции нет");
             logger.write(n);
             return;
+        } catch (NumberFormatException e) {
+            System.out.println("Неправильное значение");
+            logger.write(e);
+            return;
         } catch (Exception e) {
             logger.write(e);
             return;
